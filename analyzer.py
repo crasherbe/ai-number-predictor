@@ -3,18 +3,22 @@ from collections import Counter
 def analyze_results(results):
 
     digits = "".join(results)
-
     freq = Counter(digits)
 
-    position = {
-        "p1": Counter(),
-        "p2": Counter(),
-        "p3": Counter(),
-        "p4": Counter(),
-        "p5": Counter()
-    }
+    # tentukan panjang digit dari result pertama
+    length = len(results[0])
 
+    # buat counter posisi otomatis
+    position = {}
+
+    for i in range(length):
+        position[f"p{i+1}"] = Counter()
+
+    # hitung frekuensi posisi
     for r in results:
+
+        if len(r) != length:
+            continue  # skip kalau digit tidak sama
 
         for i,d in enumerate(r):
 
